@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { LatticeMark } from "./Lattice";
 import { SERVICES } from "@/lib/services";
-
-const LOCATIONS = ["United Arab Emirates", "Saudi Arabia", "Qatar", "Bahrain", "Oman", "Kuwait"];
+import { COUNTRIES } from "@/lib/locations";
 
 const COMPANY = [
   { label: "Portfolio", href: "/portfolio" },
@@ -77,10 +76,13 @@ export default function Footer() {
           </FooterColumn>
 
           <FooterColumn heading="Locations">
-            {LOCATIONS.map((location) => (
-              <li key={location}>
-                <Link href="/locations" className={`text-sm text-white/70 hover:text-white ${focusRing}`}>
-                  {location}
+            {COUNTRIES.map((country) => (
+              <li key={country.slug}>
+                <Link
+                  href={`/${country.slug}`}
+                  className={`text-sm text-white/70 hover:text-white ${focusRing}`}
+                >
+                  {country.name}
                 </Link>
               </li>
             ))}
