@@ -153,6 +153,7 @@ export default function PricingPage() {
         <ClosingCta
           heading="Not sure which tier actually fits?"
           subhead="Book a strategy call and we'll tell you honestly what scope your launch or your listings actually need."
+          showForm
         />
       </main>
       <Footer />

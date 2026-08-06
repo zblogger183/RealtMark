@@ -7,6 +7,7 @@ import { Eyebrow } from "@/components/Eyebrow";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { BlogContent } from "@/components/BlogContent";
 import { ClosingCta } from "@/components/ClosingCta";
+import { LeadForm } from "@/components/LeadForm";
 import { BLOG_POSTS, getBlogPostBySlug } from "@/lib/blog";
 import { getServiceBySlug } from "@/lib/services";
 import { getAreaByPath } from "@/lib/locations";
@@ -90,57 +91,53 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
         <section className="bg-white">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">
-            <div className="max-w-2xl">
-              <BlogContent content={post.content} />
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[3fr_2fr] lg:gap-10">
+              <div className="max-w-2xl">
+                <BlogContent content={post.content} />
+              </div>
+
+              <aside className="space-y-8 lg:sticky lg:top-24 lg:h-fit lg:self-start">
+                <LeadForm variant="sidebar" />
+
+                {relatedServices.length > 0 && (
+                  <div>
+                    <Eyebrow>Related services</Eyebrow>
+                    <ul className="mt-4 space-y-3">
+                      {relatedServices.map((service) => (
+                        <li key={service.slug}>
+                          <Link
+                            href={`/services/${service.slug}`}
+                            className={`block border-l-2 border-black/10 py-1 pl-4 text-sm font-medium text-black transition-colors duration-200 hover:border-secondary hover:text-primary ${focusRing}`}
+                          >
+                            {service.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {relatedLocations.length > 0 && (
+                  <div>
+                    <Eyebrow>Related locations</Eyebrow>
+                    <ul className="mt-4 space-y-3">
+                      {relatedLocations.map(({ country, city, area }) => (
+                        <li key={area.slug}>
+                          <Link
+                            href={`/${country.slug}/${city.slug}/${area.slug}`}
+                            className={`block border-l-2 border-black/10 py-1 pl-4 text-sm font-medium text-black transition-colors duration-200 hover:border-secondary hover:text-primary ${focusRing}`}
+                          >
+                            {area.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </aside>
             </div>
           </div>
         </section>
-
-        {(relatedServices.length > 0 || relatedLocations.length > 0) && (
-          <section className="border-t border-black/10 bg-white">
-            <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">
-              {relatedServices.length > 0 && (
-                <div>
-                  <Eyebrow>Related services</Eyebrow>
-                  <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {relatedServices.map((service) => {
-                      const Icon = service.icon;
-                      return (
-                        <Link
-                          key={service.slug}
-                          href={`/services/${service.slug}`}
-                          className={`group block border-t-2 border-black/10 pt-6 transition-colors duration-200 hover:border-secondary ${focusRing}`}
-                        >
-                          <Icon className="h-7 w-7 text-primary transition-colors duration-200 group-hover:text-primary-mid" />
-                          <h3 className="mt-4 text-lg font-bold text-black">{service.name}</h3>
-                          <p className="mt-2 text-sm leading-relaxed text-black">{service.oneLiner}</p>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {relatedLocations.length > 0 && (
-                <div className="mt-16">
-                  <Eyebrow>Related locations</Eyebrow>
-                  <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {relatedLocations.map(({ country, city, area }) => (
-                      <Link
-                        key={area.slug}
-                        href={`/${country.slug}/${city.slug}/${area.slug}`}
-                        className={`group block border-t-2 border-black/10 pt-6 transition-colors duration-200 hover:border-secondary ${focusRing}`}
-                      >
-                        <h3 className="text-lg font-bold text-black">{area.name}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-black">{area.heroSubhead}</p>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </section>
-        )}
 
         <ClosingCta
           heading="Have a specific market or channel question?"

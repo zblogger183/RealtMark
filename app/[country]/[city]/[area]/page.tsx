@@ -162,6 +162,7 @@ export default async function AreaDetailPage({ params }: { params: Params }) {
         <ClosingCta
           heading="Ready to talk local strategy?"
           subhead="Book a strategy call and we'll tell you honestly whether this is the right place to start."
+          showForm
         />
       </main>
       <Footer />

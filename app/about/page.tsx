@@ -102,6 +102,7 @@ export default function AboutPage() {
         <ClosingCta
           heading="Want to see if we're actually the right fit?"
           subhead="Book a strategy call — we'll ask about your market and your goals before we talk about ourselves."
+          showForm
         />
       </main>
       <Footer />

@@ -3,8 +3,39 @@
 import type { FormEvent } from "react";
 import { fieldClasses, labelClasses, useMailtoLeadForm } from "@/lib/useMailtoLeadForm";
 
-export function HeroLeadForm() {
-  const { status, disabled, submit } = useMailtoLeadForm({ subjectPrefix: "Hero inquiry" });
+export type LeadFormVariant = "hero" | "section" | "sidebar";
+
+const CARD_CLASSES: Record<LeadFormVariant, string> = {
+  hero: "rounded-xl bg-white p-6 shadow-2xl sm:p-7",
+  section: "rounded-xl bg-white p-6 shadow-xl sm:p-7",
+  sidebar: "rounded-xl bg-white p-5 shadow-xl",
+};
+
+// The 'section' variant sits right next to ClosingCta's own heading/subhead,
+// so it skips repeating one. 'hero' and 'sidebar' have no other heading
+// nearby, so they carry their own.
+const SHOW_HEADING: Record<LeadFormVariant, boolean> = {
+  hero: true,
+  section: false,
+  sidebar: true,
+};
+
+const DEFAULT_SUBJECT_PREFIX: Record<LeadFormVariant, string> = {
+  hero: "Hero inquiry",
+  section: "Strategy call request",
+  sidebar: "Blog inquiry",
+};
+
+export function LeadForm({
+  variant = "hero",
+  subjectPrefix,
+}: {
+  variant?: LeadFormVariant;
+  subjectPrefix?: string;
+}) {
+  const { status, disabled, submit } = useMailtoLeadForm({
+    subjectPrefix: subjectPrefix ?? DEFAULT_SUBJECT_PREFIX[variant],
+  });
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -17,18 +48,25 @@ export function HeroLeadForm() {
     ]);
   }
 
-  return (
-    <div className="rounded-xl bg-white p-6 shadow-2xl sm:p-7">
-      <p className="text-base font-bold text-black">Book a Strategy Call</p>
-      <p className="mt-1 text-sm text-primary-mid">Tell us the basics — we&apos;ll take it from there.</p>
+  const idPrefix = `leadform-${variant}`;
+  const showHeading = SHOW_HEADING[variant];
 
-      <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+  return (
+    <div className={CARD_CLASSES[variant]}>
+      {showHeading && (
+        <>
+          <p className="text-base font-bold text-black">Book a Strategy Call</p>
+          <p className="mt-1 text-sm text-primary-mid">Tell us the basics — we&apos;ll take it from there.</p>
+        </>
+      )}
+
+      <form onSubmit={handleSubmit} className={showHeading ? "mt-5 space-y-4" : "space-y-4"}>
         <div>
-          <label htmlFor="hero-name" className={labelClasses}>
+          <label htmlFor={`${idPrefix}-name`} className={labelClasses}>
             Name
           </label>
           <input
-            id="hero-name"
+            id={`${idPrefix}-name`}
             name="name"
             type="text"
             autoComplete="name"
@@ -39,11 +77,11 @@ export function HeroLeadForm() {
         </div>
 
         <div>
-          <label htmlFor="hero-phone" className={labelClasses}>
+          <label htmlFor={`${idPrefix}-phone`} className={labelClasses}>
             Phone / WhatsApp
           </label>
           <input
-            id="hero-phone"
+            id={`${idPrefix}-phone`}
             name="phone"
             type="tel"
             autoComplete="tel"
@@ -54,11 +92,11 @@ export function HeroLeadForm() {
         </div>
 
         <div>
-          <label htmlFor="hero-email" className={labelClasses}>
+          <label htmlFor={`${idPrefix}-email`} className={labelClasses}>
             Email
           </label>
           <input
-            id="hero-email"
+            id={`${idPrefix}-email`}
             name="email"
             type="email"
             autoComplete="email"
@@ -69,11 +107,11 @@ export function HeroLeadForm() {
         </div>
 
         <div>
-          <label htmlFor="hero-interest" className={labelClasses}>
+          <label htmlFor={`${idPrefix}-interest`} className={labelClasses}>
             What are you looking to grow?
           </label>
           <input
-            id="hero-interest"
+            id={`${idPrefix}-interest`}
             name="interest"
             type="text"
             required

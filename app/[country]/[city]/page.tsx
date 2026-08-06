@@ -146,6 +146,7 @@ export default async function CityHubPage({ params }: { params: Params }) {
           <ClosingCta
             heading="Not sure where to start in this market?"
             subhead="Book a strategy call and we'll tell you honestly what to prioritize first."
+            showForm
           />
         </main>
         <Footer />
@@ -201,6 +202,7 @@ export default async function CityHubPage({ params }: { params: Params }) {
         <ClosingCta
           heading="Not sure where to start in this market?"
           subhead="Book a strategy call and we'll tell you honestly what to prioritize first."
+          showForm
         />
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 import { LatticeField } from "../Lattice";
 import { Eyebrow } from "../Eyebrow";
 import { CtaLink } from "../CtaLink";
-import { HeroLeadForm } from "../HeroLeadForm";
+import { LeadForm } from "../LeadForm";
 
 export default function Hero() {
   return (
@@ -30,7 +30,7 @@ export default function Hero() {
           </div>
 
           <div className="w-full max-w-xl">
-            <HeroLeadForm />
+            <LeadForm variant="hero" />
           </div>
         </div>
       </div>
