@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import type { FormEvent } from "react";
+import { fieldClasses, labelClasses, useMailtoLeadForm } from "@/lib/useMailtoLeadForm";
 
 const ROLE_OPTIONS = ["Agent / Broker", "Brokerage", "Developer", "Other"];
 
@@ -11,50 +12,20 @@ const BUDGET_OPTIONS = [
   "AED 25,000+/month",
 ];
 
-const fieldClasses =
-  "mt-1.5 w-full rounded-sm border border-black/20 bg-white px-3.5 py-2.5 text-sm text-black transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:border-secondary disabled:cursor-not-allowed disabled:opacity-60";
-
-const labelClasses = "text-sm font-semibold text-black";
-
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "sent">("idle");
-  const disabled = status === "submitting";
+  const { status, disabled, submit } = useMailtoLeadForm({ subjectPrefix: "Strategy call request" });
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("submitting");
-
     const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const phone = String(data.get("phone") ?? "");
-    const role = String(data.get("role") ?? "");
-    const budget = String(data.get("budget") ?? "");
-    const message = String(data.get("message") ?? "");
-
-    const subject = `Strategy call request — ${name || "New inquiry"}`;
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone / WhatsApp: ${phone}`,
-      `Role: ${role}`,
-      `Budget range: ${budget || "Not specified"}`,
-      "",
-      "Message:",
-      message,
-    ].join("\n");
-    const mailtoUrl = `mailto:hello@realtmark.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    // TODO: this is a client-only stub. It hands off to the visitor's own
-    // email client via a mailto: link — nothing is transmitted by the site
-    // itself, and no data is stored anywhere. Replace with a real POST to
-    // an API route (wired to an email service or a CRM webhook, e.g. the
-    // GoHighLevel integration referenced on the CRM service page) once
-    // that backend decision is made, and drive `status` from its response
-    // instead of the timer below.
-    await new Promise((resolve) => setTimeout(resolve, 400));
-    window.location.href = mailtoUrl;
-    setStatus("sent");
+    submit([
+      { key: "name", label: "Name", value: String(data.get("name") ?? "") },
+      { key: "email", label: "Email", value: String(data.get("email") ?? "") },
+      { key: "phone", label: "Phone / WhatsApp", value: String(data.get("phone") ?? "") },
+      { key: "role", label: "Role", value: String(data.get("role") ?? "") },
+      { key: "budget", label: "Budget range", value: String(data.get("budget") ?? "") },
+      { key: "message", label: "Message", value: String(data.get("message") ?? "") },
+    ]);
   }
 
   return (
