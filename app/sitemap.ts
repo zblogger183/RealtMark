@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/services";
 import { COUNTRIES } from "@/lib/locations";
+import { BLOG_POSTS } from "@/lib/blog";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,6 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 1 },
     { url: `${SITE_URL}/services`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/locations`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/pricing`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.6 },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = SERVICES.filter((service) => service.status === "live").map(
@@ -52,5 +56,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         )
   );
 
-  return [...staticRoutes, ...serviceRoutes, ...countryRoutes, ...cityRoutes, ...areaRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.filter((post) => post.status === "live").map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...countryRoutes, ...cityRoutes, ...areaRoutes, ...blogRoutes];
 }

@@ -1615,3 +1615,15 @@ export function getCityBySlug(country: Country, slug: string): City | undefined 
 export function getAreaBySlug(city: City, slug: string): Area | undefined {
   return city.areas.find((area) => area.slug === slug);
 }
+
+/** Resolves a slash-joined path like "uae/dubai/dubai-marina" to its full trio. */
+export function getAreaByPath(path: string): { country: Country; city: City; area: Area } | undefined {
+  const [countrySlug, citySlug, areaSlug] = path.split("/");
+  const country = getCountryBySlug(countrySlug);
+  if (!country) return undefined;
+  const city = getCityBySlug(country, citySlug);
+  if (!city) return undefined;
+  const area = getAreaBySlug(city, areaSlug);
+  if (!area) return undefined;
+  return { country, city, area };
+}
