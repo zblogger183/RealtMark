@@ -8,6 +8,7 @@ import { CtaLink } from "@/components/CtaLink";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ClosingCta } from "@/components/ClosingCta";
+import { HeroBackground } from "@/components/HeroBackground";
 import { COUNTRIES, getCountryBySlug, getCityBySlug } from "@/lib/locations";
 import { getServiceBySlug } from "@/lib/services";
 import { SITE_URL } from "@/lib/site";
@@ -76,7 +77,7 @@ export default async function CityHubPage({ params }: { params: Params }) {
       <>
         <Navbar />
         <main>
-          <section className="bg-primary">
+          <HeroBackground imagePath={city.heroImage}>
             <div className="mx-auto max-w-content px-6 pb-16 pt-8 md:px-10 md:pb-20 md:pt-10">
               <Breadcrumbs tone="light" items={breadcrumbItems} />
               <div className="mt-8 max-w-2xl md:mt-10">
@@ -90,7 +91,7 @@ export default async function CityHubPage({ params }: { params: Params }) {
                 </div>
               </div>
             </div>
-          </section>
+          </HeroBackground>
 
           <section className="bg-white">
             <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">
@@ -163,21 +164,25 @@ export default async function CityHubPage({ params }: { params: Params }) {
     <>
       <Navbar />
       <main className="bg-white">
-        <div className="mx-auto max-w-content px-6 pt-8 md:px-10">
-          <Breadcrumbs items={breadcrumbItems} />
-        </div>
-
-        <div className="mx-auto max-w-content px-6 pb-16 pt-10 md:px-10 md:pb-20 md:pt-12">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl font-bold text-black md:text-5xl">
-              Real Estate Marketing in {city.name}
-            </h1>
-            <p className="mt-5 text-base leading-relaxed text-black">
-              Local strategy for every area we cover in {city.name} — organic, paid, content, and
-              CRM support built around how buyers actually search neighbourhood by neighbourhood.
-            </p>
+        <HeroBackground imagePath={city.heroImage} tone="light">
+          <div className="mx-auto max-w-content px-6 pt-8 md:px-10">
+            <Breadcrumbs items={breadcrumbItems} />
           </div>
 
+          <div className="mx-auto max-w-content px-6 pt-10 md:px-10 md:pt-12">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl font-bold text-black md:text-5xl">
+                Real Estate Marketing in {city.name}
+              </h1>
+              <p className="mt-5 text-base leading-relaxed text-black">
+                Local strategy for every area we cover in {city.name} — organic, paid, content, and
+                CRM support built around how buyers actually search neighbourhood by neighbourhood.
+              </p>
+            </div>
+          </div>
+        </HeroBackground>
+
+        <div className="mx-auto max-w-content px-6 pb-16 md:px-10 md:pb-20">
           {city.areas.length > 0 ? (
             <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {city.areas.map((area) => (

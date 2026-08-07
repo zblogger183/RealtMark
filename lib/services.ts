@@ -18,6 +18,8 @@ export type FaqItem = {
 
 export type Service = {
   slug: string;
+  /** Expected hero background photo path under public/. Optional — no file needs to exist yet. */
+  heroImage?: string;
   name: string;
   /** Short outcome-framed line used on homepage teaser cards and hub cards. */
   oneLiner: string;
@@ -50,6 +52,7 @@ const GULF_LOCATIONS = [
 export const SERVICES: Service[] = [
   {
     slug: "real-estate-seo",
+    heroImage: "/images/hero/services/real-estate-seo.jpg",
     name: "Real Estate SEO",
     oneLiner:
       "Own the search results your next buyer or investor is already typing — from off-plan launches to ready secondary-market listings.",
@@ -135,6 +138,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "website-landing-pages",
+    heroImage: "/images/hero/services/website-landing-pages.jpg",
     name: "Website & Landing Page Design",
     oneLiner:
       "Launch sites and landing pages built to convert inquiries into qualified leads, not just impress in a pitch deck.",
@@ -219,6 +223,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "paid-ads",
+    heroImage: "/images/hero/services/paid-ads.jpg",
     name: "Paid Ads (Google + Meta)",
     oneLiner:
       "Campaigns targeted at buyers who can actually close — by nationality, income bracket, and intent, not just by click.",
@@ -301,6 +306,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "branding-identity",
+    heroImage: "/images/hero/services/branding-identity.jpg",
     name: "Branding & Identity",
     oneLiner:
       "Positioning and identity that read as credible to a seven-figure buyer before a single word of copy is written.",
@@ -382,6 +388,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "content-production",
+    heroImage: "/images/hero/services/content-production.jpg",
     name: "Content (Photography, Drone, Video, 3D Tours)",
     oneLiner:
       "Visual assets built for buyers making major decisions remotely — often from another country, sight unseen.",
@@ -461,6 +468,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "crm-automation",
+    heroImage: "/images/hero/services/crm-automation.jpg",
     name: "CRM & Marketing Automation",
     oneLiner:
       "Every inquiry logged, routed, and followed up on schedule — not left sitting in an agent's WhatsApp.",

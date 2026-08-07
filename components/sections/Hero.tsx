@@ -1,17 +1,13 @@
-import { LatticeField } from "../Lattice";
 import { Eyebrow } from "../Eyebrow";
 import { CtaLink } from "../CtaLink";
 import { LeadForm } from "../LeadForm";
+import { HeroBackground } from "../HeroBackground";
+import { HERO_IMAGES } from "@/lib/heroImages";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-primary">
-      <LatticeField id="hero-lattice-base" className="text-white opacity-[0.02]" scale={1.6} />
-      <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/2 md:block">
-        <LatticeField id="hero-lattice-accent" className="text-white opacity-[0.05]" scale={1.6} />
-      </div>
-
-      <div className="relative mx-auto max-w-content px-6 py-24 md:px-10 md:py-28 lg:py-32">
+    <HeroBackground imagePath={HERO_IMAGES.home} lattice>
+      <div className="mx-auto max-w-content px-6 py-24 md:px-10 md:py-28 lg:py-32">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[3fr_2fr] lg:gap-10">
           <div className="max-w-2xl">
             <Eyebrow tone="light">Real Estate Marketing — Dubai &amp; the GCC</Eyebrow>
@@ -34,6 +30,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </HeroBackground>
   );
 }

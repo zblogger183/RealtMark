@@ -8,9 +8,11 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { BlogContent } from "@/components/BlogContent";
 import { ClosingCta } from "@/components/ClosingCta";
 import { LeadForm } from "@/components/LeadForm";
+import { HeroBackground } from "@/components/HeroBackground";
 import { BLOG_POSTS, getBlogPostBySlug } from "@/lib/blog";
 import { getServiceBySlug } from "@/lib/services";
 import { getAreaByPath } from "@/lib/locations";
+import { getBlogPostHeroImage } from "@/lib/heroImages";
 import { SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -70,7 +72,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     <>
       <Navbar />
       <main>
-        <section className="bg-primary">
+        <HeroBackground imagePath={getBlogPostHeroImage(post.slug)}>
           <div className="mx-auto max-w-content px-6 pb-16 pt-8 md:px-10 md:pb-20 md:pt-10">
             <Breadcrumbs
               tone="light"
@@ -87,7 +89,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80">{post.excerpt}</p>
             </div>
           </div>
-        </section>
+        </HeroBackground>
 
         <section className="bg-white">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">

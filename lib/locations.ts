@@ -11,6 +11,8 @@ export type Area = {
   name: string;
   /** 'stub' pages get noindexed and excluded from the sitemap until flipped to 'live'. */
   status: "live" | "stub";
+  /** Expected hero background photo path under public/. Optional — no file needs to exist yet. */
+  heroImage?: string;
   heroHeadline: string;
   heroSubhead: string;
   marketContext: string;
@@ -28,6 +30,8 @@ export type City = {
    */
   status: "live" | "stub";
   areas: Area[];
+  /** Expected hero background photo path under public/. Optional — no file needs to exist yet. */
+  heroImage?: string;
   /**
    * Optional deep content, used by cities that are the deepest page in their
    * branch (no area-level pages beneath them) rather than an index of areas.
@@ -49,11 +53,14 @@ export type Country = {
   cities: City[];
   /** Short paragraph contextualizing RealtMark's presence in this country. Lighter touch than city/area content. */
   intro?: string;
+  /** Expected hero background photo path under public/. Optional — no file needs to exist yet. */
+  heroImage?: string;
 };
 
 const dubaiAreas: Area[] = [
   {
     slug: "dubai-marina",
+    heroImage: "/images/hero/locations/uae/dubai/dubai-marina.jpg",
     name: "Dubai Marina",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Dubai Marina",
@@ -108,6 +115,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "downtown-dubai",
+    heroImage: "/images/hero/locations/uae/dubai/downtown-dubai.jpg",
     name: "Downtown Dubai",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Downtown Dubai",
@@ -162,6 +170,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "business-bay",
+    heroImage: "/images/hero/locations/uae/dubai/business-bay.jpg",
     name: "Business Bay",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Business Bay",
@@ -215,6 +224,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "palm-jumeirah",
+    heroImage: "/images/hero/locations/uae/dubai/palm-jumeirah.jpg",
     name: "Palm Jumeirah",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Palm Jumeirah",
@@ -268,6 +278,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "jvc",
+    heroImage: "/images/hero/locations/uae/dubai/jvc.jpg",
     name: "Jumeirah Village Circle (JVC)",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in JVC",
@@ -321,6 +332,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "dubai-hills-estate",
+    heroImage: "/images/hero/locations/uae/dubai/dubai-hills-estate.jpg",
     name: "Dubai Hills Estate",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Dubai Hills Estate",
@@ -374,6 +386,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "arabian-ranches",
+    heroImage: "/images/hero/locations/uae/dubai/arabian-ranches.jpg",
     name: "Arabian Ranches",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Arabian Ranches",
@@ -427,6 +440,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "jlt",
+    heroImage: "/images/hero/locations/uae/dubai/jlt.jpg",
     name: "Jumeirah Lake Towers (JLT)",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in JLT",
@@ -480,6 +494,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "al-furjan",
+    heroImage: "/images/hero/locations/uae/dubai/al-furjan.jpg",
     name: "Al Furjan",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Al Furjan",
@@ -533,6 +548,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "mbr-city-meydan",
+    heroImage: "/images/hero/locations/uae/dubai/mbr-city-meydan.jpg",
     name: "MBR City / Meydan",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in MBR City / Meydan",
@@ -586,6 +602,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "dubai-south",
+    heroImage: "/images/hero/locations/uae/dubai/dubai-south.jpg",
     name: "Dubai South",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Dubai South",
@@ -639,6 +656,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "motor-city",
+    heroImage: "/images/hero/locations/uae/dubai/motor-city.jpg",
     name: "Motor City",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Motor City",
@@ -692,6 +710,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "al-barsha",
+    heroImage: "/images/hero/locations/uae/dubai/al-barsha.jpg",
     name: "Al Barsha",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Al Barsha",
@@ -745,6 +764,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "jumeirah",
+    heroImage: "/images/hero/locations/uae/dubai/jumeirah.jpg",
     name: "Jumeirah",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Jumeirah",
@@ -798,6 +818,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "difc",
+    heroImage: "/images/hero/locations/uae/dubai/difc.jpg",
     name: "DIFC",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in DIFC",
@@ -851,6 +872,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "arjan",
+    heroImage: "/images/hero/locations/uae/dubai/arjan.jpg",
     name: "Arjan",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Arjan",
@@ -904,6 +926,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "dubailand",
+    heroImage: "/images/hero/locations/uae/dubai/dubailand.jpg",
     name: "Dubailand",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Dubailand",
@@ -957,6 +980,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "the-valley",
+    heroImage: "/images/hero/locations/uae/dubai/the-valley.jpg",
     name: "The Valley",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in The Valley",
@@ -1010,6 +1034,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "palm-jebel-ali",
+    heroImage: "/images/hero/locations/uae/dubai/palm-jebel-ali.jpg",
     name: "Palm Jebel Ali",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Palm Jebel Ali",
@@ -1063,6 +1088,7 @@ const dubaiAreas: Area[] = [
   },
   {
     slug: "dubai-silicon-oasis",
+    heroImage: "/images/hero/locations/uae/dubai/dubai-silicon-oasis.jpg",
     name: "Dubai Silicon Oasis",
     status: "live",
     heroHeadline: "Real Estate Digital Marketing in Dubai Silicon Oasis",
@@ -1119,14 +1145,22 @@ const dubaiAreas: Area[] = [
 export const COUNTRIES: Country[] = [
   {
     slug: "uae",
+    heroImage: "/images/hero/locations/uae.jpg",
     name: "United Arab Emirates",
     status: "live",
     intro:
       "The UAE is our home market and the most mature real estate marketing environment we cover. Dubai's freehold system, Trakheesi advertising rules, and RERA registration are all well established; Abu Dhabi's steadier, more institutional market and Sharjah's more affordable, family-oriented one each bring a genuinely different buyer profile and regulatory character on top of that.",
     cities: [
-      { slug: "dubai", name: "Dubai", status: "live", areas: dubaiAreas },
+      {
+        slug: "dubai",
+        name: "Dubai",
+        status: "live",
+        areas: dubaiAreas,
+        heroImage: "/images/hero/locations/uae/dubai.jpg",
+      },
       {
         slug: "abu-dhabi",
+        heroImage: "/images/hero/locations/uae/abu-dhabi.jpg",
         name: "Abu Dhabi",
         status: "live",
         areas: [],
@@ -1181,6 +1215,7 @@ export const COUNTRIES: Country[] = [
       },
       {
         slug: "sharjah",
+        heroImage: "/images/hero/locations/uae/sharjah.jpg",
         name: "Sharjah",
         status: "live",
         areas: [],
@@ -1237,6 +1272,7 @@ export const COUNTRIES: Country[] = [
   },
   {
     slug: "saudi-arabia",
+    heroImage: "/images/hero/locations/saudi-arabia.jpg",
     name: "Saudi Arabia",
     status: "live",
     intro:
@@ -1244,6 +1280,7 @@ export const COUNTRIES: Country[] = [
     cities: [
       {
         slug: "riyadh",
+        heroImage: "/images/hero/locations/saudi-arabia/riyadh.jpg",
         name: "Riyadh",
         status: "live",
         areas: [],
@@ -1298,6 +1335,7 @@ export const COUNTRIES: Country[] = [
       },
       {
         slug: "jeddah",
+        heroImage: "/images/hero/locations/saudi-arabia/jeddah.jpg",
         name: "Jeddah",
         status: "live",
         areas: [],
@@ -1353,6 +1391,7 @@ export const COUNTRIES: Country[] = [
   },
   {
     slug: "qatar",
+    heroImage: "/images/hero/locations/qatar.jpg",
     name: "Qatar",
     status: "live",
     intro:
@@ -1360,6 +1399,7 @@ export const COUNTRIES: Country[] = [
     cities: [
       {
         slug: "doha",
+        heroImage: "/images/hero/locations/qatar/doha.jpg",
         name: "Doha",
         status: "live",
         areas: [],
@@ -1416,6 +1456,7 @@ export const COUNTRIES: Country[] = [
   },
   {
     slug: "bahrain",
+    heroImage: "/images/hero/locations/bahrain.jpg",
     name: "Bahrain",
     status: "live",
     intro:
@@ -1423,6 +1464,7 @@ export const COUNTRIES: Country[] = [
     cities: [
       {
         slug: "manama",
+        heroImage: "/images/hero/locations/bahrain/manama.jpg",
         name: "Manama",
         status: "live",
         areas: [],
@@ -1479,6 +1521,7 @@ export const COUNTRIES: Country[] = [
   },
   {
     slug: "oman",
+    heroImage: "/images/hero/locations/oman.jpg",
     name: "Oman",
     status: "live",
     intro:
@@ -1486,6 +1529,7 @@ export const COUNTRIES: Country[] = [
     cities: [
       {
         slug: "muscat",
+        heroImage: "/images/hero/locations/oman/muscat.jpg",
         name: "Muscat",
         status: "live",
         areas: [],
@@ -1541,6 +1585,7 @@ export const COUNTRIES: Country[] = [
   },
   {
     slug: "kuwait",
+    heroImage: "/images/hero/locations/kuwait.jpg",
     name: "Kuwait",
     status: "live",
     intro:
@@ -1548,6 +1593,7 @@ export const COUNTRIES: Country[] = [
     cities: [
       {
         slug: "kuwait-city",
+        heroImage: "/images/hero/locations/kuwait/kuwait-city.jpg",
         name: "Kuwait City",
         status: "live",
         areas: [],

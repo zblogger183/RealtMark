@@ -7,6 +7,7 @@ import { CtaLink } from "@/components/CtaLink";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ClosingCta } from "@/components/ClosingCta";
+import { HeroBackground } from "@/components/HeroBackground";
 import { SERVICES, getServiceBySlug } from "@/lib/services";
 import { SITE_URL } from "@/lib/site";
 
@@ -61,7 +62,7 @@ export default async function ServiceDetailPage({
     <>
       <Navbar />
       <main>
-        <section className="bg-primary">
+        <HeroBackground imagePath={service.heroImage}>
           <div className="mx-auto max-w-content px-6 pb-16 pt-8 md:px-10 md:pb-20 md:pt-10">
             <Breadcrumbs
               tone="light"
@@ -82,7 +83,7 @@ export default async function ServiceDetailPage({
               </div>
             </div>
           </div>
-        </section>
+        </HeroBackground>
 
         <section className="bg-white">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">

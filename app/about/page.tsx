@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ClosingCta } from "@/components/ClosingCta";
+import { HeroBackground } from "@/components/HeroBackground";
+import { HERO_IMAGES } from "@/lib/heroImages";
 
 export const metadata: Metadata = {
   title: "About — RealtMark",
@@ -17,7 +19,7 @@ export default function AboutPage() {
     <>
       <Navbar />
       <main>
-        <section className="bg-primary">
+        <HeroBackground imagePath={HERO_IMAGES.about}>
           <div className="mx-auto max-w-content px-6 pb-16 pt-8 md:px-10 md:pb-20 md:pt-10">
             <Breadcrumbs tone="light" items={[{ label: "Home", href: "/" }, { label: "About" }]} />
             <div className="mt-8 max-w-2xl md:mt-10">
@@ -31,7 +33,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-        </section>
+        </HeroBackground>
 
         <section className="bg-white">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">
