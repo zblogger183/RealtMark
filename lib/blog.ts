@@ -1,7 +1,11 @@
+import { getServiceBySlug } from "./services";
+
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string }
-  | { type: "list"; items: string[] };
+  | { type: "list"; items: string[] }
+  /** A pulled-out, visually distinct version of a point already made in the surrounding text — not new copy. */
+  | { type: "callout"; text: string };
 
 export type BlogPost = {
   slug: string;
@@ -48,7 +52,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       { type: "heading", text: "Where paid media fits" },
       {
-        type: "paragraph",
+        type: "callout",
         text: "None of this replaces paid search and social — it complements it. SEO is the slower-building, compounding channel; paid media is what carries lead volume while the organic content matures. A developer campaign that leans on paid alone for the first six months while SEO work runs in parallel tends to land in a much stronger position at month seven than one that starts SEO only after paid spend has already proven the demand exists.",
       },
       {
@@ -78,7 +82,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       { type: "heading", text: "What changes with real automation" },
       {
-        type: "paragraph",
+        type: "callout",
         text: "Moving WhatsApp from habit to system doesn't mean replacing it — WhatsApp stays the channel, because it's where the conversations already happen and where GCC buyers actually expect to be reached. What changes is that every inquiry gets logged and routed the moment it arrives, follow-up sequences run on a schedule instead of a memory, and a lead that's gone quiet for a week gets flagged instead of forgotten. The agent still has the conversation; the system just makes sure the conversation happens on time and that someone can see it happened at all.",
       },
       { type: "heading", text: "Where this actually pays off" },
@@ -113,7 +117,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       { type: "heading", text: "The price story flips" },
       {
-        type: "paragraph",
+        type: "callout",
         text: "In JVC, the price conversation is the campaign — rental yield, service charge transparency, and payment plan flexibility are the actual selling points, and avoiding a direct price comparison would be a mistake, because the buyer is going to make that comparison anyway. In Downtown, leading with price undersells the product; the campaign needs to establish why the address and the brand justify the premium before price becomes the conversation at all. Running the JVC price-forward approach in a Downtown campaign reads as downmarket. Running the Downtown prestige-forward approach in JVC reads as evasive.",
       },
       { type: "heading", text: "Channel mix and volume" },
@@ -149,4 +153,41 @@ export function getLiveBlogPosts(): BlogPost[] {
   return BLOG_POSTS.filter((post) => post.status === "live").sort(
     (a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
   );
+}
+
+const WORDS_PER_MINUTE = 200;
+
+/** Computed from actual content length — not a stated/invented figure. */
+export function getReadTimeMinutes(post: BlogPost): number {
+  const wordCount = post.content.reduce((total, block) => {
+    const text = block.type === "list" ? block.items.join(" ") : block.text;
+    return total + text.split(/\s+/).filter(Boolean).length;
+  }, 0);
+  return Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
+}
+
+/** Other live posts sharing a related service or location — real, derived overlap, not curated by hand. */
+export function getRelatedPosts(post: BlogPost, limit = 2): BlogPost[] {
+  return getLiveBlogPosts()
+    .filter((candidate) => candidate.slug !== post.slug)
+    .filter(
+      (candidate) =>
+        candidate.relatedServiceSlugs.some((slug) => post.relatedServiceSlugs.includes(slug)) ||
+        candidate.relatedLocationSlugs.some((path) => post.relatedLocationSlugs.includes(path))
+    )
+    .slice(0, limit);
+}
+
+/** A post's category is its primary related service's name — no separate taxonomy to keep in sync. */
+export function getPostCategory(post: BlogPost): string | undefined {
+  const primaryServiceSlug = post.relatedServiceSlugs[0];
+  if (!primaryServiceSlug) return undefined;
+  return getServiceBySlug(primaryServiceSlug)?.name;
+}
+
+export function getBlogCategories(): string[] {
+  const categories = getLiveBlogPosts()
+    .map((post) => getPostCategory(post))
+    .filter((category): category is string => Boolean(category));
+  return Array.from(new Set(categories));
 }

@@ -8,6 +8,9 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ClosingCta } from "@/components/ClosingCta";
 import { HeroBackground } from "@/components/HeroBackground";
+import { ComparisonTable } from "@/components/ComparisonTable";
+import { ToolsStack } from "@/components/ToolsStack";
+import { IconCheck } from "@/components/icons";
 import { SERVICES, getServiceBySlug } from "@/lib/services";
 import { SITE_URL } from "@/lib/site";
 
@@ -92,6 +95,7 @@ export default async function ServiceDetailPage({
               <h2 className="mt-3 text-3xl font-bold text-black">{service.problemHeading}</h2>
               <p className="mt-4 text-base leading-relaxed text-black">{service.problem}</p>
             </div>
+            <ComparisonTable problem={service.problem} whatsIncluded={service.whatsIncluded} />
           </div>
         </section>
 
@@ -105,13 +109,20 @@ export default async function ServiceDetailPage({
               {service.whatsIncluded.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-3 border-t border-black/10 pt-4 text-sm leading-relaxed text-black"
+                  className="flex gap-4 border-t border-black/10 pt-4 text-sm leading-relaxed text-black"
                 >
-                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-secondary" aria-hidden="true" />
+                  <IconCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-secondary" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
+
+            {service.tools && service.tools.length > 0 && (
+              <div className="mt-16 border-t border-black/10 pt-10">
+                <Eyebrow>Tools we use</Eyebrow>
+                <ToolsStack tools={service.tools} />
+              </div>
+            )}
           </div>
         </section>
 

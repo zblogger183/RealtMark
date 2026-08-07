@@ -31,6 +31,8 @@ export type Service = {
   problemHeading: string;
   problem: string;
   whatsIncluded: string[];
+  /** Tools/platforms named in this service's own copy above — not a separate claim. Omit if none are named. */
+  tools?: string[];
   process: ProcessStep[];
   whoItsFor: WhoItsForSegment[];
   relatedLocations: string[];
@@ -71,6 +73,7 @@ export const SERVICES: Service[] = [
       "Backlink development from the portals Gulf buyers actually trust: Bayut, Property Finder, Dubizzle.",
       "Core Web Vitals and mobile performance work — mobile-first matters more here than in most markets, since the majority of property searches in the Gulf happen on mobile.",
     ],
+    tools: ["Bayut", "Property Finder", "Dubizzle", "Core Web Vitals"],
     process: [
       {
         step: "Audit",
@@ -157,6 +160,7 @@ export const SERVICES: Service[] = [
       "Fast-loading image and video handling suited to inconsistent mobile connections, not just fast office Wi-Fi.",
       "Launch and evergreen project pages both covered — a single-property launch page and a standing brokerage site are different builds, scoped differently.",
     ],
+    tools: ["Core Web Vitals", "WhatsApp click-to-chat"],
     process: [
       {
         step: "Brief",
@@ -242,6 +246,7 @@ export const SERVICES: Service[] = [
       "Cross-platform management across Google and Meta, coordinated rather than run as two disconnected campaigns.",
       "Reporting tied to cost per qualified lead, not reach or impressions.",
     ],
+    tools: ["Google Ads", "Meta Ads Manager"],
     process: [
       {
         step: "Audience",
@@ -407,6 +412,7 @@ export const SERVICES: Service[] = [
       "Content briefed and delivered in formats ready for paid campaign use, not a generic asset dump.",
       "Turnaround planning around drone and access lead time, not a last-minute request.",
     ],
+    tools: ["Drone", "3D Renders", "Virtual Tours"],
     process: [
       {
         step: "Brief",
@@ -487,6 +493,7 @@ export const SERVICES: Service[] = [
       "Lead routing rules built around your team structure — by agent, by listing, or by source.",
       "Reporting on response time and follow-up completion, not just lead volume.",
     ],
+    tools: ["GoHighLevel", "WhatsApp Business"],
     process: [
       {
         step: "Map",

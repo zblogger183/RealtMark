@@ -9,7 +9,10 @@ import { BlogContent } from "@/components/BlogContent";
 import { ClosingCta } from "@/components/ClosingCta";
 import { LeadForm } from "@/components/LeadForm";
 import { HeroBackground } from "@/components/HeroBackground";
-import { BLOG_POSTS, getBlogPostBySlug } from "@/lib/blog";
+import { TableOfContents } from "@/components/TableOfContents";
+import { RelatedArticles } from "@/components/RelatedArticles";
+import { NewsletterSignup } from "@/components/sections/NewsletterSignup";
+import { BLOG_POSTS, getBlogPostBySlug, getReadTimeMinutes, getRelatedPosts } from "@/lib/blog";
 import { getServiceBySlug } from "@/lib/services";
 import { getAreaByPath } from "@/lib/locations";
 import { getBlogPostHeroImage } from "@/lib/heroImages";
@@ -56,6 +59,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     .map((path) => getAreaByPath(path))
     .filter((location): location is NonNullable<typeof location> => Boolean(location));
 
+  const relatedPosts = getRelatedPosts(post);
+
   const postJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -85,7 +90,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             <div className="mt-8 max-w-2xl md:mt-10">
               <Eyebrow tone="light">Blog</Eyebrow>
               <h1 className="mt-5 text-4xl font-bold text-white md:text-5xl">{post.title}</h1>
-              <p className="mt-4 text-sm text-white/60">Published {formatDate(post.publishedDate)}</p>
+              <p className="mt-4 text-sm text-white/60">
+                By RealtMark Team · Published {formatDate(post.publishedDate)} ·{" "}
+                {getReadTimeMinutes(post)} min read
+              </p>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80">{post.excerpt}</p>
             </div>
           </div>
@@ -100,6 +108,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
               <aside className="space-y-8 lg:sticky lg:top-24 lg:h-fit lg:self-start">
                 <LeadForm variant="sidebar" />
+
+                <TableOfContents content={post.content} />
 
                 {relatedServices.length > 0 && (
                   <div>
@@ -136,10 +146,14 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                     </ul>
                   </div>
                 )}
+
+                <RelatedArticles posts={relatedPosts} />
               </aside>
             </div>
           </div>
         </section>
+
+        <NewsletterSignup />
 
         <ClosingCta
           heading="Have a specific market or channel question?"

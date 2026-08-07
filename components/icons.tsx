@@ -60,6 +60,14 @@ export function IconContent({ className = "h-6 w-6" }: IconProps) {
   );
 }
 
+export function IconCheck({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M4 12.5 L9.5 18 L20 6" />
+    </svg>
+  );
+}
+
 export function IconCrm({ className = "h-6 w-6" }: IconProps) {
   return (
     <svg {...base} className={className}>

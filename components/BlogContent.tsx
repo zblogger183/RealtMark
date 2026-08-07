@@ -1,4 +1,5 @@
 import type { ContentBlock } from "@/lib/blog";
+import { headingSlug } from "@/lib/headingSlug";
 
 export function BlogContent({ content }: { content: ContentBlock[] }) {
   return (
@@ -6,9 +7,20 @@ export function BlogContent({ content }: { content: ContentBlock[] }) {
       {content.map((block, index) => {
         if (block.type === "heading") {
           return (
-            <h2 key={index} className="pt-4 text-3xl font-bold text-black">
+            <h2 key={index} id={headingSlug(block.text)} className="scroll-mt-24 pt-4 text-3xl font-bold text-black">
               {block.text}
             </h2>
+          );
+        }
+
+        if (block.type === "callout") {
+          return (
+            <p
+              key={index}
+              className="border-l-2 border-secondary bg-primary/5 py-4 pl-6 text-lg leading-relaxed text-black"
+            >
+              {block.text}
+            </p>
           );
         }
 

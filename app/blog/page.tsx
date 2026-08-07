@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ClosingCta } from "@/components/ClosingCta";
 import { HeroBackground } from "@/components/HeroBackground";
+import { BlogList } from "@/components/BlogList";
+import { NewsletterSignup } from "@/components/sections/NewsletterSignup";
 import { HERO_IMAGES } from "@/lib/heroImages";
-import { getLiveBlogPosts } from "@/lib/blog";
+import { getLiveBlogPosts, getBlogCategories } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog — RealtMark",
@@ -15,15 +16,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-}
-
-const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 rounded-sm";
-
 export default function BlogIndexPage() {
   const posts = getLiveBlogPosts();
+  const categories = getBlogCategories();
 
   return (
     <>
@@ -45,23 +40,11 @@ export default function BlogIndexPage() {
           </div>
         </HeroBackground>
 
-        <div className="mx-auto max-w-content px-6 pb-16 md:px-10 md:pb-20">
-          <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className={`group block border-t-2 border-black/10 pt-6 transition-colors duration-200 hover:border-secondary ${focusRing}`}
-              >
-                <span className="text-xs font-semibold uppercase tracking-widest text-primary-mid">
-                  {formatDate(post.publishedDate)}
-                </span>
-                <h2 className="mt-3 text-xl font-bold text-black">{post.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-black">{post.excerpt}</p>
-              </Link>
-            ))}
-          </div>
+        <div className="mx-auto max-w-content px-6 pb-16 pt-14 md:px-10 md:pb-20">
+          <BlogList posts={posts} categories={categories} />
         </div>
+
+        <NewsletterSignup />
 
         <ClosingCta
           heading="Have a specific market or channel question?"

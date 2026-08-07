@@ -6,6 +6,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ClosingCta } from "@/components/ClosingCta";
 import { HeroBackground } from "@/components/HeroBackground";
 import { HERO_IMAGES } from "@/lib/heroImages";
+import Team from "@/components/sections/Team";
+import PortfolioTeaser from "@/components/sections/PortfolioTeaser";
 
 export const metadata: Metadata = {
   title: "About — RealtMark",
@@ -100,6 +102,9 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        <Team />
+        <PortfolioTeaser />
 
         <ClosingCta
           heading="Want to see if we're actually the right fit?"
