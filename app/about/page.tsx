@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Eyebrow } from "@/components/Eyebrow";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { PageHero } from "@/components/PageHero";
 import { ClosingCta } from "@/components/ClosingCta";
-import { HeroBackground } from "@/components/HeroBackground";
 import { HERO_IMAGES } from "@/lib/heroImages";
 import Team from "@/components/sections/Team";
 import PortfolioTeaser from "@/components/sections/PortfolioTeaser";
@@ -21,21 +20,14 @@ export default function AboutPage() {
     <>
       <Navbar />
       <main>
-        <HeroBackground imagePath={HERO_IMAGES.about}>
-          <div className="mx-auto max-w-content px-6 pb-16 pt-8 md:px-10 md:pb-20 md:pt-10">
-            <Breadcrumbs tone="light" items={[{ label: "Home", href: "/" }, { label: "About" }]} />
-            <div className="mt-8 max-w-2xl md:mt-10">
-              <Eyebrow tone="light">About</Eyebrow>
-              <h1 className="mt-5 text-4xl font-bold text-white md:text-5xl">
-                A complete digital growth partner for real estate across Dubai and the GCC
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
-                One team running SEO, paid media, content, branding, and CRM together — not five
-                vendors that happen to share a client.
-              </p>
-            </div>
-          </div>
-        </HeroBackground>
+        <PageHero
+          imagePath={HERO_IMAGES.about}
+          breadcrumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+          eyebrow="About"
+          title="A complete digital growth partner for real estate across Dubai and the GCC"
+          subhead="One team running SEO, paid media, content, branding, and CRM together — not five vendors that happen to share a client."
+          formSubjectPrefix="About page inquiry"
+        />
 
         <section className="bg-white">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">

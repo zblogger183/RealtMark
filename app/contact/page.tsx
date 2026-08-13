@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Eyebrow } from "@/components/Eyebrow";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
+import { HERO_IMAGES } from "@/lib/heroImages";
 
 export const metadata: Metadata = {
   title: "Contact — RealtMark",
@@ -17,20 +18,14 @@ export default function ContactPage() {
     <>
       <Navbar />
       <main>
-        <section className="bg-primary">
-          <div className="mx-auto max-w-content px-6 pb-16 pt-8 md:px-10 md:pb-20 md:pt-10">
-            <Breadcrumbs tone="light" items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
-            <div className="mt-8 max-w-2xl md:mt-10">
-              <Eyebrow tone="light">Contact</Eyebrow>
-              <h1 className="mt-5 text-4xl font-bold text-white md:text-5xl">Book a Strategy Call</h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
-                Tell us about the launch, the brokerage, or the listings you&apos;re working with.
-                We reply within one business day, and we&apos;ll tell you honestly whether
-                we&apos;re the right fit.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          imagePath={HERO_IMAGES.contact}
+          breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+          eyebrow="Contact"
+          title="Book a Strategy Call"
+          subhead="Tell us about the launch, the brokerage, or the listings you're working with. We reply within one business day, and we'll tell you honestly whether we're the right fit."
+          showForm={false}
+        />
 
         <section className="bg-white">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">

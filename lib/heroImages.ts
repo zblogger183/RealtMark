@@ -5,8 +5,12 @@
  */
 export const HERO_IMAGES = {
   home: "/images/hero/home.jpg",
+  servicesIndex: "/images/hero/services.jpg",
+  locationsIndex: "/images/hero/locations-index.jpg",
   pricing: "/images/hero/pricing.jpg",
   about: "/images/hero/about.jpg",
+  portfolio: "/images/hero/portfolio.jpg",
+  contact: "/images/hero/contact.jpg",
   blogIndex: "/images/hero/blog.jpg",
 } as const;
 

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -11,6 +10,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { HeroBackground } from "@/components/HeroBackground";
 import { TableOfContents } from "@/components/TableOfContents";
 import { RelatedArticles } from "@/components/RelatedArticles";
+import { PageSidebar, SidebarLinks } from "@/components/PageSidebar";
 import { NewsletterSignup } from "@/components/sections/NewsletterSignup";
 import { BLOG_POSTS, getBlogPostBySlug, getReadTimeMinutes, getRelatedPosts } from "@/lib/blog";
 import { getServiceBySlug } from "@/lib/services";
@@ -42,9 +42,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
-
-const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 rounded-sm";
 
 export default async function BlogPostPage({ params }: { params: Params }) {
   const { slug } = await params;
@@ -106,49 +103,29 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 <BlogContent content={post.content} />
               </div>
 
-              <aside className="space-y-8 lg:sticky lg:top-24 lg:h-fit lg:self-start">
+              <PageSidebar>
                 <LeadForm variant="sidebar" />
 
                 <TableOfContents content={post.content} />
 
-                {relatedServices.length > 0 && (
-                  <div>
-                    <Eyebrow>Related services</Eyebrow>
-                    <ul className="mt-4 space-y-3">
-                      {relatedServices.map((service) => (
-                        <li key={service.slug}>
-                          <Link
-                            href={`/services/${service.slug}`}
-                            className={`block border-l-2 border-black/10 py-1 pl-4 text-sm font-medium text-black transition-colors duration-200 hover:border-secondary hover:text-primary ${focusRing}`}
-                          >
-                            {service.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <SidebarLinks
+                  heading="Related services"
+                  items={relatedServices.map((service) => ({
+                    href: `/services/${service.slug}`,
+                    label: service.name,
+                  }))}
+                />
 
-                {relatedLocations.length > 0 && (
-                  <div>
-                    <Eyebrow>Related locations</Eyebrow>
-                    <ul className="mt-4 space-y-3">
-                      {relatedLocations.map(({ country, city, area }) => (
-                        <li key={area.slug}>
-                          <Link
-                            href={`/${country.slug}/${city.slug}/${area.slug}`}
-                            className={`block border-l-2 border-black/10 py-1 pl-4 text-sm font-medium text-black transition-colors duration-200 hover:border-secondary hover:text-primary ${focusRing}`}
-                          >
-                            {area.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <SidebarLinks
+                  heading="Related locations"
+                  items={relatedLocations.map(({ country, city, area }) => ({
+                    href: `/${country.slug}/${city.slug}/${area.slug}`,
+                    label: area.name,
+                  }))}
+                />
 
                 <RelatedArticles posts={relatedPosts} />
-              </aside>
+              </PageSidebar>
             </div>
           </div>
         </section>

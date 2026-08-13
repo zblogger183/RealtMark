@@ -1,4 +1,5 @@
 import { Eyebrow } from "../Eyebrow";
+import { CtaLink } from "../CtaLink";
 import { LatticeField } from "../Lattice";
 import { SHOW_SAMPLE_CONTENT } from "@/lib/sampleContent";
 
@@ -30,7 +31,8 @@ export default function PortfolioTeaser() {
           <Eyebrow>Portfolio</Eyebrow>
           <h2 className="mt-3 text-3xl font-bold text-black">Sample placeholder project preview</h2>
           <p className="mt-4 text-base leading-relaxed text-black">
-            A full portfolio page is still pending — this previews the layout only.
+            Real case studies are still being documented and cleared with clients — this previews
+            the card layout with invented projects, not published work.
           </p>
         </div>
 
@@ -47,6 +49,12 @@ export default function PortfolioTeaser() {
               <p className="mt-2 text-sm leading-relaxed text-black">{project.summary}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12">
+          <CtaLink href="/portfolio" variant="outline-dark">
+            See the Portfolio Page
+          </CtaLink>
         </div>
       </div>
     </section>

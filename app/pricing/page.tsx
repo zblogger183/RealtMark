@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Eyebrow } from "@/components/Eyebrow";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { PageHero } from "@/components/PageHero";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ClosingCta } from "@/components/ClosingCta";
-import { HeroBackground } from "@/components/HeroBackground";
 import { HERO_IMAGES } from "@/lib/heroImages";
 import type { FaqItem } from "@/lib/services";
 
@@ -88,21 +87,14 @@ export default function PricingPage() {
     <>
       <Navbar />
       <main>
-        <HeroBackground imagePath={HERO_IMAGES.pricing}>
-          <div className="mx-auto max-w-content px-6 pb-16 pt-8 md:px-10 md:pb-20 md:pt-10">
-            <Breadcrumbs tone="light" items={[{ label: "Home", href: "/" }, { label: "Pricing" }]} />
-            <div className="mt-8 max-w-2xl md:mt-10">
-              <Eyebrow tone="light">Pricing</Eyebrow>
-              <h1 className="mt-5 text-4xl font-bold text-white md:text-5xl">
-                Three ways to work with us, scoped to who&apos;s buying
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80">
-                A solo agent, a multi-agent brokerage, and a developer running an off-plan launch
-                need genuinely different scope, not the same package at three price points.
-              </p>
-            </div>
-          </div>
-        </HeroBackground>
+        <PageHero
+          imagePath={HERO_IMAGES.pricing}
+          breadcrumbs={[{ label: "Home", href: "/" }, { label: "Pricing" }]}
+          eyebrow="Pricing"
+          title="Three ways to work with us, scoped to who's buying"
+          subhead="A solo agent, a multi-agent brokerage, and a developer running an off-plan launch need genuinely different scope, not the same package at three price points."
+          formSubjectPrefix="Pricing inquiry"
+        />
 
         <section className="bg-white">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">

@@ -34,10 +34,11 @@ then `npm run dev`.
 - [ ] **Portfolio teaser** — `components/sections/PortfolioTeaser.tsx`, rendered on both
       `/` and `/about`. All 3 projects (The Meridian, Arjan Green Collective, Palm Crest
       Residences) are fictional; the service tags on each card are real service names used
-      as placeholders. This does not resolve whether `/portfolio` becomes a real page or
-      stays concept-only — it only previews the card layout. Replace with real project
-      cards once that decision is made, or remove this teaser if the answer is "no
-      portfolio yet."
+      as placeholders. `/portfolio` is now a real page (`app/portfolio/page.tsx`) — it does
+      not include these fabricated cards; it's honest, real copy about how case studies get
+      published. Once real, permission-cleared case studies exist, replace this teaser's
+      fictional projects with real ones and add matching project detail content to
+      `/portfolio` itself.
 
 ## Explicitly NOT on this list (real, ungated, safe to ship as-is)
 

@@ -1662,6 +1662,22 @@ export function getAreaBySlug(city: City, slug: string): Area | undefined {
   return city.areas.find((area) => area.slug === slug);
 }
 
+/**
+ * Resolves a `nearbyAreas` entry (a plain name, e.g. "Business Bay") to its
+ * live area page within the same city, if one exists. `nearbyAreas` lists
+ * names for context even when no page exists yet (e.g. "JBR"), so callers
+ * should treat a missing result as expected, not an error.
+ *
+ * Falls back to matching a parenthesised abbreviation (e.g. "JLT" against
+ * "Jumeirah Lake Towers (JLT)") since `nearbyAreas` entries elsewhere use the
+ * short form while the canonical `Area.name` spells the full name out.
+ */
+export function getAreaByName(city: City, name: string): Area | undefined {
+  const exact = city.areas.find((area) => area.name === name);
+  if (exact) return exact;
+  return city.areas.find((area) => area.name.includes(`(${name})`));
+}
+
 /** Resolves a slash-joined path like "uae/dubai/dubai-marina" to its full trio. */
 export function getAreaByPath(path: string): { country: Country; city: City; area: Area } | undefined {
   const [countrySlug, citySlug, areaSlug] = path.split("/");
