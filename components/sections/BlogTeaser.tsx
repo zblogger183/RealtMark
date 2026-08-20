@@ -1,7 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "../Eyebrow";
 import { LatticeField } from "../Lattice";
 import { getLiveBlogPosts, getReadTimeMinutes, getPostCategory } from "@/lib/blog";
+import { getBlogPostHeroImage } from "@/lib/heroImages";
+import { imageExists } from "@/lib/imageExists";
 
 export default function BlogTeaser() {
   const posts = getLiveBlogPosts();
@@ -9,6 +12,8 @@ export default function BlogTeaser() {
 
   const [featured, ...rest] = posts;
   const listPosts = rest.slice(0, 2);
+  const featuredImage = getBlogPostHeroImage(featured.slug);
+  const hasFeaturedImage = imageExists(featuredImage);
 
   return (
     <section className="bg-primary">
@@ -32,7 +37,20 @@ export default function BlogTeaser() {
             className="group block overflow-hidden rounded-xl border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
           >
             <div className="relative flex h-56 items-end overflow-hidden bg-primary-mid p-6">
-              <LatticeField id="blog-teaser-featured" className="text-white opacity-[0.12]" scale={1.4} />
+              {hasFeaturedImage ? (
+                <Image
+                  src={featuredImage}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              ) : (
+                <LatticeField id="blog-teaser-featured" className="text-white opacity-[0.12]" scale={1.4} />
+              )}
+              {hasFeaturedImage && (
+                <div className="absolute inset-0 bg-primary/50" aria-hidden="true" />
+              )}
               {getPostCategory(featured) && (
                 <span className="absolute left-6 top-6 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-black">
                   {getPostCategory(featured)}
@@ -51,14 +69,21 @@ export default function BlogTeaser() {
           </Link>
 
           <div className="flex flex-col gap-6">
-            {listPosts.map((post) => (
+            {listPosts.map((post) => {
+              const postImage = getBlogPostHeroImage(post.slug);
+              const hasPostImage = imageExists(postImage);
+              return (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 className="group flex gap-5 rounded-xl border border-white/10 p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
               >
                 <span className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-primary-mid">
-                  <LatticeField id={`blog-teaser-${post.slug}`} className="text-white opacity-[0.15]" scale={1.2} />
+                  {hasPostImage ? (
+                    <Image src={postImage} alt="" fill sizes="64px" className="object-cover" />
+                  ) : (
+                    <LatticeField id={`blog-teaser-${post.slug}`} className="text-white opacity-[0.15]" scale={1.2} />
+                  )}
                 </span>
                 <div className="min-w-0">
                   {getPostCategory(post) && (
@@ -72,7 +97,8 @@ export default function BlogTeaser() {
                   <p className="mt-1 text-xs text-white/50">{getReadTimeMinutes(post)} min read</p>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
