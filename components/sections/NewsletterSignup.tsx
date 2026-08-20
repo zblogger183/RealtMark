@@ -39,7 +39,7 @@ export function NewsletterSignup() {
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-sm bg-secondary px-6 py-2.5 text-sm font-semibold text-black transition-colors duration-200 hover:bg-secondary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary-mid"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-secondary px-6 py-2.5 text-sm font-semibold text-black transition-colors duration-200 hover:bg-secondary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-primary-mid"
               >
                 Subscribe
               </button>

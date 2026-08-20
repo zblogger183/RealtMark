@@ -101,7 +101,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={disabled}
-          className="inline-flex items-center justify-center rounded-sm bg-secondary px-6 py-3 text-sm font-semibold text-black transition-colors duration-200 hover:bg-secondary-dark disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-black transition-colors duration-200 hover:bg-secondary-dark disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         >
           {disabled ? "Opening your email…" : "Send"}
         </button>

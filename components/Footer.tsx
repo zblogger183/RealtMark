@@ -27,6 +27,20 @@ export default function Footer() {
 
   return (
     <footer className="bg-primary">
+      <div className="border-b border-black/10 bg-secondary">
+        <div className="mx-auto flex max-w-content flex-col items-center justify-between gap-4 px-6 py-4 text-center sm:flex-row sm:text-left md:px-10">
+          <p className="text-sm font-semibold text-black">
+            Get a free quote — no commitment required.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex flex-shrink-0 items-center justify-center rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+          >
+            Book a Strategy Call
+          </Link>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-content px-6 py-16 md:px-10">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
           <div className="col-span-2">

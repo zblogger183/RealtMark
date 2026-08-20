@@ -3,14 +3,21 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
 import TrustBar from "@/components/sections/TrustBar";
-import RealStats from "@/components/sections/RealStats";
-import StatsBand from "@/components/sections/StatsBand";
+import ToolsStrip from "@/components/sections/ToolsStrip";
+import WhoWeAre from "@/components/sections/WhoWeAre";
+import ServicesIntro from "@/components/sections/ServicesIntro";
 import Services from "@/components/sections/Services";
-import PortfolioTeaser from "@/components/sections/PortfolioTeaser";
-import Locations from "@/components/sections/Locations";
-import WhyRealtMark from "@/components/sections/WhyRealtMark";
+import StatsBand from "@/components/sections/StatsBand";
+import RealStats from "@/components/sections/RealStats";
 import Process from "@/components/sections/Process";
+import PortfolioTeaser from "@/components/sections/PortfolioTeaser";
+import WhyUsComparison from "@/components/sections/WhyUsComparison";
+import ContractTerms from "@/components/sections/ContractTerms";
+import WhoWeWorkWith from "@/components/sections/WhoWeWorkWith";
+import GlobalReach from "@/components/sections/GlobalReach";
+import Team from "@/components/sections/Team";
 import Testimonials from "@/components/sections/Testimonials";
+import BlogTeaser from "@/components/sections/BlogTeaser";
 import Faq from "@/components/sections/Faq";
 import FinalCta from "@/components/sections/FinalCta";
 
@@ -28,14 +35,21 @@ export default function Home() {
       <main>
         <Hero />
         <TrustBar />
-        <RealStats />
-        <StatsBand />
+        <ToolsStrip />
+        <WhoWeAre />
+        <ServicesIntro />
         <Services />
-        <PortfolioTeaser />
-        <Locations />
-        <WhyRealtMark />
+        <StatsBand />
+        <RealStats />
         <Process />
+        <PortfolioTeaser />
+        <WhyUsComparison />
+        <ContractTerms />
+        <WhoWeWorkWith />
+        <GlobalReach />
+        <Team />
         <Testimonials />
+        <BlogTeaser />
         <Faq />
         <FinalCta />
       </main>

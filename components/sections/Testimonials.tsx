@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { Eyebrow } from "../Eyebrow";
 import { SHOW_SAMPLE_CONTENT } from "@/lib/sampleContent";
 
@@ -36,61 +33,44 @@ const TESTIMONIALS = [
 ];
 
 export default function Testimonials() {
-  const [index, setIndex] = useState(0);
-
   if (!SHOW_SAMPLE_CONTENT) return null;
 
-  const current = TESTIMONIALS[index];
-
-  function prev() {
-    setIndex((i) => (i - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  }
-
-  function next() {
-    setIndex((i) => (i + 1) % TESTIMONIALS.length);
-  }
-
   return (
-    <section data-sample="true" className="bg-white">
+    <section data-sample="true" className="bg-black/[0.02]">
       <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-28">
         <div className="max-w-2xl">
-          <Eyebrow>What clients say</Eyebrow>
-          <h2 className="mt-3 text-3xl font-bold text-black">Sample placeholder testimonials</h2>
+          <Eyebrow>Sample placeholder testimonials</Eyebrow>
+          <h2 className="mt-3 text-3xl font-bold text-black">What clients say, once we have clients on record.</h2>
         </div>
 
-        <div className="mt-12 max-w-3xl border-t-2 border-secondary pt-8">
-          <p className="text-xl leading-relaxed text-black">&ldquo;{current.quote}&rdquo;</p>
-          <div className="mt-6 flex items-center gap-4">
-            <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
-              {current.initials}
-            </span>
-            <div>
-              <p className="text-sm font-bold text-black">{current.name}</p>
-              <p className="text-sm text-primary-mid">{current.role}</p>
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+          {TESTIMONIALS.map((testimonial, i) => (
+            <div
+              key={testimonial.name}
+              className={`rounded-xl p-7 ${
+                i % 2 === 0 ? "bg-primary text-white" : "border border-black/10 bg-white text-black"
+              }`}
+            >
+              <p className={`text-base leading-relaxed ${i % 2 === 0 ? "text-white/90" : "text-black"}`}>
+                &ldquo;{testimonial.quote}&rdquo;
+              </p>
+              <div className="mt-6 flex items-center gap-4">
+                <span
+                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold ${
+                    i % 2 === 0 ? "bg-secondary text-black" : "bg-primary text-white"
+                  }`}
+                >
+                  {testimonial.initials}
+                </span>
+                <div>
+                  <p className="text-sm font-bold">{testimonial.name}</p>
+                  <p className={`text-xs ${i % 2 === 0 ? "text-white/60" : "text-primary-mid"}`}>
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="mt-8 flex items-center gap-4">
-            <button
-              type="button"
-              onClick={prev}
-              aria-label="Previous testimonial"
-              className="rounded-sm border border-black/20 px-4 py-2 text-sm font-semibold text-black transition-colors duration-200 hover:border-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
-            >
-              Prev
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Next testimonial"
-              className="rounded-sm border border-black/20 px-4 py-2 text-sm font-semibold text-black transition-colors duration-200 hover:border-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
-            >
-              Next
-            </button>
-            <span className="text-xs tabular-nums text-primary-mid">
-              {index + 1} / {TESTIMONIALS.length}
-            </span>
-          </div>
+          ))}
         </div>
       </div>
     </section>

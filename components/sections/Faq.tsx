@@ -28,17 +28,34 @@ const FAQS: FaqItem[] = [
     answer:
       "Most engagements start with a three-month minimum — long enough for paid media to optimise and for early SEO signal to show. After that, it runs quarterly or month-to-month depending on the service. No multi-year lock-in.",
   },
+  {
+    question: "Do you work with solo agents, or only brokerages and developers?",
+    answer:
+      "All three, with scope adjusted to match. A solo agent gets a tight, single-channel engagement; a brokerage gets multi-agent CRM routing and full community coverage; a developer gets a launch-timed campaign. The pricing page breaks down what each tier actually includes.",
+  },
 ];
 
 export default function Faq() {
+  const midpoint = Math.ceil(FAQS.length / 2);
+  const left = FAQS.slice(0, midpoint);
+  const right = FAQS.slice(midpoint);
+
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-28">
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>FAQ</Eyebrow>
-          <h2 className="mt-3 text-3xl font-bold text-black">Questions worth answering directly</h2>
+          <h2 className="mt-3 text-3xl font-bold text-black md:text-4xl">
+            Your real estate marketing questions,
+            <br />
+            <span className="border-b-2 border-secondary">answered directly.</span>
+          </h2>
         </div>
-        <FaqAccordion items={FAQS} />
+
+        <div className="mt-4 grid grid-cols-1 gap-x-12 lg:grid-cols-2">
+          <FaqAccordion items={left} />
+          <FaqAccordion items={right} />
+        </div>
       </div>
     </section>
   );

@@ -24,7 +24,7 @@ export function CtaLink({
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center rounded-sm px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 ${variants[variant]} ${className}`}
+      className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 ${variants[variant]} ${className}`}
     >
       {children}
     </Link>

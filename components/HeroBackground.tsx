@@ -1,7 +1,6 @@
-import fs from "node:fs";
-import path from "node:path";
 import Image from "next/image";
 import { LatticeField } from "./Lattice";
+import { imageExists } from "@/lib/imageExists";
 
 type Tone = "dark" | "light";
 
@@ -17,14 +16,6 @@ const TONE_SCRIM: Record<Tone, string> = {
   dark: "bg-primary/80",
   light: "bg-white/80",
 };
-
-function heroImageExists(imagePath: string): boolean {
-  try {
-    return fs.existsSync(path.join(process.cwd(), "public", imagePath));
-  } catch {
-    return false;
-  }
-}
 
 /**
  * Shared hero wrapper: renders a real photo (with brand scrim) when one
@@ -43,7 +34,7 @@ export function HeroBackground({
   lattice?: boolean;
   children: React.ReactNode;
 }) {
-  const hasImage = Boolean(imagePath) && heroImageExists(imagePath!);
+  const hasImage = Boolean(imagePath) && imageExists(imagePath!);
 
   return (
     <section className={`relative overflow-hidden ${TONE_BASE[tone]}`}>
