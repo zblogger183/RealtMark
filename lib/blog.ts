@@ -5,7 +5,9 @@ export type ContentBlock =
   | { type: "heading"; text: string }
   | { type: "list"; items: string[] }
   /** A pulled-out, visually distinct version of a point already made in the surrounding text — not new copy. */
-  | { type: "callout"; text: string };
+  | { type: "callout"; text: string }
+  /** src is a path under public/ — same convention as heroImage. Renders only if the file exists on disk. */
+  | { type: "image"; src: string; alt: string; caption?: string };
 
 export type BlogPost = {
   slug: string;
@@ -50,6 +52,18 @@ export const BLOG_POSTS: BlogPost[] = [
         type: "paragraph",
         text: "Downtown Dubai and Dubai Marina are useful examples of how differently this plays out. Downtown competes on brand and address prestige as much as on price, so content built for a Downtown launch has to work harder to differentiate against other branded-residence developments chasing the same small set of head terms. Dubai Marina is a higher-turnover market with heavier competition from resale listings and short-term-rental content, so the SEO priority shifts toward consistent publishing velocity over a single perfectly optimised page. Neither problem is solved by the same generic template.",
       },
+      {
+        type: "image",
+        src: "/images/hero/locations/uae/dubai/downtown-dubai.jpg",
+        alt: "Downtown Dubai skyline around the Burj Khalifa",
+        caption: "Downtown Dubai — brand and address prestige carry as much of the pitch as price.",
+      },
+      {
+        type: "image",
+        src: "/images/hero/locations/uae/dubai/dubai-marina.jpg",
+        alt: "Dubai Marina waterfront towers",
+        caption: "Dubai Marina — higher turnover rewards consistent publishing velocity over one perfect page.",
+      },
       { type: "heading", text: "Where paid media fits" },
       {
         type: "callout",
@@ -81,6 +95,12 @@ export const BLOG_POSTS: BlogPost[] = [
         text: "The failure mode isn't dramatic. Nobody loses a lead in an obvious way. What actually happens is slower: response times drift from minutes to hours as agents get busy, follow-up sequences depend entirely on individual memory rather than any system, and when an agent leaves, their open conversations leave with them. None of this shows up in a monthly report, because there's no report — which is itself the problem.",
       },
       { type: "heading", text: "What changes with real automation" },
+      {
+        type: "image",
+        src: "/images/hero/services/crm-automation.jpg",
+        alt: "Team reviewing lead follow-up on laptops in an office",
+        caption: "Every inquiry logged and routed the moment it arrives, not whenever someone checks their phone.",
+      },
       {
         type: "callout",
         text: "Moving WhatsApp from habit to system doesn't mean replacing it — WhatsApp stays the channel, because it's where the conversations already happen and where GCC buyers actually expect to be reached. What changes is that every inquiry gets logged and routed the moment it arrives, follow-up sequences run on a schedule instead of a memory, and a lead that's gone quiet for a week gets flagged instead of forgotten. The agent still has the conversation; the system just makes sure the conversation happens on time and that someone can see it happened at all.",
@@ -114,6 +134,18 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "paragraph",
         text: "A JVC launch is selling primarily to yield-focused investors comparing rental return across a large field of similarly priced units — many of them buying their second or third Dubai property, price-sensitive, and fluent in comparing service charges and expected rental yield line by line. A Downtown launch is selling to a mix of high-net-worth end users and short-term-rental investors who are paying partly for the address itself, and who are comparing this launch against other branded, prestige-anchored developments rather than against a field of near-identical mid-market towers.",
+      },
+      {
+        type: "image",
+        src: "/images/hero/locations/uae/dubai/jvc.jpg",
+        alt: "Mid-rise apartment towers in Jumeirah Village Circle",
+        caption: "JVC — yield-focused investors comparing rental return unit by unit.",
+      },
+      {
+        type: "image",
+        src: "/images/hero/locations/uae/dubai/downtown-dubai.jpg",
+        alt: "Downtown Dubai skyline around the Burj Khalifa",
+        caption: "Downtown Dubai — buyers are paying partly for the address itself.",
       },
       { type: "heading", text: "The price story flips" },
       {
@@ -160,6 +192,7 @@ const WORDS_PER_MINUTE = 200;
 /** Computed from actual content length — not a stated/invented figure. */
 export function getReadTimeMinutes(post: BlogPost): number {
   const wordCount = post.content.reduce((total, block) => {
+    if (block.type === "image") return total;
     const text = block.type === "list" ? block.items.join(" ") : block.text;
     return total + text.split(/\s+/).filter(Boolean).length;
   }, 0);

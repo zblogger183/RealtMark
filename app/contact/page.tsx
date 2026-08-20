@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/Eyebrow";
 import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
 import { HERO_IMAGES } from "@/lib/heroImages";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact — RealtMark",
@@ -50,7 +51,16 @@ export default function ContactPage() {
                       hello@realtmark.com
                     </a>
                   </p>
-                  <p className="text-primary-mid">Dubai, United Arab Emirates</p>
+                  {PHONE_TEL ? (
+                    <p>
+                      <a href={`tel:${PHONE_TEL}`} className="font-semibold text-primary hover:text-primary-mid">
+                        {PHONE_DISPLAY}
+                      </a>
+                    </p>
+                  ) : (
+                    <p className="text-primary-mid/60">{PHONE_DISPLAY} (line coming soon)</p>
+                  )}
+                  <p className="text-primary-mid">Serving Dubai &amp; the GCC</p>
                 </div>
 
                 <h3 className="mt-10 text-base font-bold text-black">What happens next</h3>

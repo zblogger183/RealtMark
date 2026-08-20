@@ -1,5 +1,7 @@
+import Image from "next/image";
 import type { ContentBlock } from "@/lib/blog";
 import { headingSlug } from "@/lib/headingSlug";
+import { imageExists } from "@/lib/imageExists";
 
 export function BlogContent({ content }: { content: ContentBlock[] }) {
   return (
@@ -21,6 +23,26 @@ export function BlogContent({ content }: { content: ContentBlock[] }) {
             >
               {block.text}
             </p>
+          );
+        }
+
+        if (block.type === "image") {
+          if (!imageExists(block.src)) return null;
+          return (
+            <figure key={index} className="my-2">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-primary">
+                <Image
+                  src={block.src}
+                  alt={block.alt}
+                  fill
+                  sizes="(min-width: 1024px) 640px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              {block.caption && (
+                <figcaption className="mt-2 text-sm text-black/50">{block.caption}</figcaption>
+              )}
+            </figure>
           );
         }
 

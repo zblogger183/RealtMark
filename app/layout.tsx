@@ -33,6 +33,10 @@ export const metadata: Metadata = {
   },
 };
 
+// No `address` field: RealtMark doesn't have a real UAE postal address yet.
+// Claiming one in structured data — machine-readable fact, not marketing
+// copy — is exactly the kind of thing worth getting right before shipping.
+// Add it back once there's a genuine registered address to put here.
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -40,11 +44,6 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/icon`,
   email: "hello@realtmark.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Dubai",
-    addressCountry: "AE",
-  },
   areaServed: ["United Arab Emirates", "Saudi Arabia", "Qatar", "Bahrain", "Oman", "Kuwait"],
 };
 

@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/pricing`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${SITE_URL}/privacy-policy`, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${SITE_URL}/terms-and-conditions`, changeFrequency: "yearly", priority: 0.2 },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = SERVICES.filter((service) => service.status === "live").map(

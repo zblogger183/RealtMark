@@ -2,6 +2,7 @@ import Link from "next/link";
 import { LatticeMark } from "./Lattice";
 import { SERVICES } from "@/lib/services";
 import { COUNTRIES } from "@/lib/locations";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const COMPANY = [
   { label: "Portfolio", href: "/portfolio" },
@@ -53,10 +54,17 @@ export default function Footer() {
               the wider Gulf.
             </p>
             <div className="mt-6 space-y-1.5 text-sm text-white/60">
-              <p>Dubai, United Arab Emirates</p>
+              <p>Serving Dubai &amp; the GCC</p>
               <a href="mailto:hello@realtmark.com" className={`inline-block hover:text-white ${focusRing}`}>
                 hello@realtmark.com
               </a>
+              {PHONE_TEL ? (
+                <a href={`tel:${PHONE_TEL}`} className={`inline-block hover:text-white ${focusRing}`}>
+                  {PHONE_DISPLAY}
+                </a>
+              ) : (
+                <p className="text-white/40">{PHONE_DISPLAY} (line coming soon)</p>
+              )}
             </div>
             <div className="mt-6 flex items-center gap-4">
               <a href="#" aria-label="RealtMark on LinkedIn" className={`text-white/60 hover:text-white ${focusRing}`}>
@@ -117,7 +125,15 @@ export default function Footer() {
           <p className="text-xs text-white/50">
             Campaigns built in line with DLD/RERA and Madhmoun advertising regulations.
           </p>
-          <p className="text-xs text-white/50">© {year} RealtMark. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link href="/privacy-policy" className={`text-xs text-white/50 hover:text-white ${focusRing}`}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms-and-conditions" className={`text-xs text-white/50 hover:text-white ${focusRing}`}>
+              Terms &amp; Conditions
+            </Link>
+            <p className="text-xs text-white/50">© {year} RealtMark. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>
