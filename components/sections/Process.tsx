@@ -41,22 +41,49 @@ export default function Process() {
           </h2>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 md:grid-cols-4">
-          {STEPS.map((step) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.number} className="text-center">
-                <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary text-secondary">
-                  <Icon className="h-6 w-6" />
-                  <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-secondary text-[10px] font-bold tabular-nums text-black">
+        <div className="relative mt-20">
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-white/15 to-transparent md:block"
+          />
+          <div className="grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 md:grid-cols-4">
+            {STEPS.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.number} className="group relative text-center">
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 -top-6 select-none text-7xl font-black leading-none text-white/[0.06]"
+                  >
                     {step.number}
                   </span>
+
+                  {index < STEPS.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -right-3 top-8 hidden -translate-y-1/2 text-secondary/50 md:block"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+                        <path d="M9 5 L16 12 L9 19 L7.5 17.5 L13 12 L7.5 6.5 Z" />
+                      </svg>
+                    </span>
+                  )}
+
+                  <div className="relative z-10 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary text-primary shadow-lg shadow-black/20 ring-8 ring-primary-mid transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
+                    <Icon className="h-6 w-6" />
+                    <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[10px] font-bold tabular-nums text-secondary ring-2 ring-primary-mid">
+                      {step.number}
+                    </span>
+                  </div>
+
+                  <h3 className="relative z-10 mt-6 text-lg font-bold text-white">{step.title}</h3>
+                  <p className="relative z-10 mx-auto mt-3 max-w-xs text-sm leading-relaxed text-white/70">
+                    {step.copy}
+                  </p>
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{step.copy}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
