@@ -1,6 +1,7 @@
 import { Eyebrow } from "../Eyebrow";
 import { CtaLink } from "../CtaLink";
 import { IconCheck } from "../icons";
+import { LatticeMark, LatticeField } from "../Lattice";
 
 const ROWS = [
   { them: "Compliance bolted on after a takedown notice", us: "Trakheesi, RERA & Madhmoun built in from the first draft" },
@@ -24,24 +25,56 @@ export default function WhyUsComparison() {
           </h2>
         </div>
 
-        <div className="mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm">
-          <div className="grid grid-cols-2">
-            <div className="border-r border-black/10 bg-black/[0.03] px-5 py-4 text-sm font-semibold text-black/50 sm:px-8">
+        <div className="relative isolate mx-auto mt-14 max-w-4xl overflow-hidden rounded-3xl border border-black/10 bg-white shadow-xl shadow-black/5">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-secondary/10 blur-3xl"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-primary/5 blur-3xl"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-gradient-to-b from-secondary/0 via-secondary/50 to-secondary/0 sm:block"
+          />
+
+          <div className="relative grid grid-cols-1 sm:grid-cols-2">
+            <div className="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-black/45 sm:px-8">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black/10 text-xs font-bold text-black/40">
+                ✕
+              </span>
               Generic agencies
             </div>
-            <div className="bg-primary px-5 py-4 text-sm font-semibold text-white sm:px-8">RealtMark</div>
+            <div className="relative flex items-center gap-2 overflow-hidden bg-gradient-to-br from-primary to-primary-mid px-5 py-4 text-sm font-semibold text-white sm:px-8">
+              <LatticeField id="whyus-header" className="text-white opacity-[0.08]" scale={0.7} />
+              <LatticeMark className="relative h-5 w-5 text-secondary" />
+              <span className="relative">RealtMark</span>
+            </div>
+
+            <span
+              aria-hidden="true"
+              className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-secondary bg-white px-2.5 py-1 text-[10px] font-black tracking-wide text-primary shadow-md sm:flex"
+            >
+              VS
+            </span>
           </div>
 
           {ROWS.map((row) => (
-            <div key={row.us} className="grid grid-cols-2 border-t border-black/10">
-              <div className="flex items-start gap-3 border-r border-black/10 px-5 py-5 sm:px-8">
-                <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-black/10 text-xs font-bold text-black/40">
+            <div
+              key={row.us}
+              className="group/row relative grid grid-cols-1 border-t border-black/10 sm:grid-cols-2"
+            >
+              <div className="flex items-start gap-3 px-5 py-5 transition-colors duration-200 group-hover/row:bg-black/[0.02] sm:px-8">
+                <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-black/10 text-xs font-bold text-black/40 transition-transform duration-200 group-hover/row:scale-110">
                   ✕
                 </span>
-                <p className="text-sm leading-relaxed text-black/50">{row.them}</p>
+                <p className="text-sm leading-relaxed text-black/50 line-through decoration-black/20">{row.them}</p>
               </div>
-              <div className="flex items-start gap-3 bg-primary/[0.03] px-5 py-5 sm:px-8">
-                <IconCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-secondary-dark" />
+              <div className="flex items-start gap-3 bg-secondary/[0.04] px-5 py-5 transition-colors duration-200 group-hover/row:bg-secondary/10 sm:px-8">
+                <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary/20 text-secondary-dark transition-transform duration-200 group-hover/row:scale-110">
+                  <IconCheck className="h-3.5 w-3.5" />
+                </span>
                 <p className="text-sm font-medium leading-relaxed text-black">{row.us}</p>
               </div>
             </div>
