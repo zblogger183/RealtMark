@@ -124,7 +124,7 @@ export default function PricingPage() {
         <section className="bg-primary-mid">
           <div className="mx-auto max-w-content px-6 py-12 md:px-10 md:py-14">
             <div className="max-w-2xl">
-              <Eyebrow tone="light">One disclosure, every tier</Eyebrow>
+              <Eyebrow tone="onMid">One disclosure, every tier</Eyebrow>
               <p className="mt-3 text-base leading-relaxed text-white">
                 Ad spend on Google and Meta is separate from every figure above and paid directly
                 by you, not folded into the retainer. None of the ranges on this page include

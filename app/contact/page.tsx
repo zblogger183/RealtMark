@@ -58,7 +58,7 @@ export default function ContactPage() {
                       </a>
                     </p>
                   ) : (
-                    <p className="text-primary-mid/60">{PHONE_DISPLAY} (line coming soon)</p>
+                    <p className="text-primary-mid">{PHONE_DISPLAY} (line coming soon)</p>
                   )}
                   <p className="text-primary-mid">Serving Dubai &amp; the GCC</p>
                 </div>

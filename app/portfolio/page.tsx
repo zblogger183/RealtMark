@@ -64,14 +64,14 @@ export default function PortfolioPage() {
         <section className="border-t border-black/10 bg-primary-mid">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-28">
             <div className="max-w-2xl">
-              <Eyebrow tone="light">What a case study covers</Eyebrow>
+              <Eyebrow tone="onMid">What a case study covers</Eyebrow>
               <h2 className="mt-3 text-3xl font-bold text-white">The structure every one will follow</h2>
             </div>
             <div className="mt-16 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-3">
               {CASE_STUDY_STEPS.map((entry, i) => (
                 <div key={entry.step}>
                   <div className="flex items-center gap-3">
-                    <span className="text-base font-bold tabular-nums text-secondary">
+                    <span className="text-base font-bold tabular-nums text-white">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="h-px flex-1 bg-white/25" aria-hidden="true" />

@@ -69,7 +69,7 @@ export default function ServicesIntro() {
                     <span className="block text-base font-bold text-white">
                       {String(i + 1).padStart(2, "0")}. {service.name}
                     </span>
-                    <span className="mt-0.5 block truncate text-sm text-white/50">{service.oneLiner}</span>
+                    <span className="mt-0.5 block truncate text-sm text-white/70">{service.oneLiner}</span>
                   </span>
                   {TAGS[service.slug] && (
                     <span className="hidden flex-shrink-0 text-xs font-semibold uppercase tracking-wide text-secondary sm:block">

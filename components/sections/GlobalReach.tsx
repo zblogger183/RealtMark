@@ -41,7 +41,7 @@ export default function GlobalReach() {
           {stats.map((stat) => (
             <div key={stat.label} className="rounded-xl border border-white/10 py-6 text-center">
               <p className="text-3xl font-bold tabular-nums text-secondary">{stat.value}</p>
-              <p className="mt-2 text-xs uppercase tracking-wide text-white/50">{stat.label}</p>
+              <p className="mt-2 text-xs uppercase tracking-wide text-white/70">{stat.label}</p>
             </div>
           ))}
         </div>

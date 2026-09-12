@@ -40,8 +40,8 @@ export default function WhyUsComparison() {
           />
 
           <div className="relative grid grid-cols-1 sm:grid-cols-2">
-            <div className="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-black/45 sm:px-8">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black/10 text-xs font-bold text-black/40">
+            <div className="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-black/60 sm:px-8">
+              <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-black/10 text-xs font-bold text-black/40">
                 ✕
               </span>
               Generic agencies
@@ -66,10 +66,10 @@ export default function WhyUsComparison() {
               className="group/row relative grid grid-cols-1 border-t border-black/10 sm:grid-cols-2"
             >
               <div className="flex items-start gap-3 px-5 py-5 transition-colors duration-200 group-hover/row:bg-black/[0.02] sm:px-8">
-                <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-black/10 text-xs font-bold text-black/40 transition-transform duration-200 group-hover/row:scale-110">
+                <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-black/10 text-xs font-bold text-black/40 transition-transform duration-200 group-hover/row:scale-110">
                   ✕
                 </span>
-                <p className="text-sm leading-relaxed text-black/50 line-through decoration-black/20">{row.them}</p>
+                <p className="text-sm leading-relaxed text-black/60 line-through decoration-black/20">{row.them}</p>
               </div>
               <div className="flex items-start gap-3 bg-secondary/[0.04] px-5 py-5 transition-colors duration-200 group-hover/row:bg-secondary/10 sm:px-8">
                 <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary/20 text-secondary-dark transition-transform duration-200 group-hover/row:scale-110">
