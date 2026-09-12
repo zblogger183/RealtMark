@@ -12,7 +12,7 @@ export default function ToolsStrip() {
         </p>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
           {TOOLS.map((tool) => (
-            <span key={tool} className="text-sm font-semibold uppercase tracking-wide text-black/50">
+            <span key={tool} className="text-sm font-semibold uppercase tracking-wide text-black/60">
               {tool}
             </span>
           ))}

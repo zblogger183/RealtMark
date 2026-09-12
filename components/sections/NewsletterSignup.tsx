@@ -15,7 +15,7 @@ export function NewsletterSignup() {
       <div className="mx-auto max-w-content px-6 py-12 md:px-10 md:py-14">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-md">
-            <p className="text-xs font-semibold uppercase tracking-widest text-secondary">Newsletter</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-white">Newsletter</p>
             <h2 className="mt-2 text-xl font-bold text-white">
               New posts on Gulf real estate marketing, in your inbox.
             </h2>

@@ -61,8 +61,8 @@ export default function BlogTeaser() {
               <h3 className="text-xl font-bold text-white transition-colors duration-200 group-hover:text-secondary">
                 {featured.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/60">{featured.excerpt}</p>
-              <p className="mt-4 text-xs uppercase tracking-wide text-white/40">
+              <p className="mt-3 text-sm leading-relaxed text-white/70">{featured.excerpt}</p>
+              <p className="mt-4 text-xs uppercase tracking-wide text-white/70">
                 {getReadTimeMinutes(featured)} min read
               </p>
             </div>
@@ -94,7 +94,7 @@ export default function BlogTeaser() {
                   <h3 className="mt-1 truncate text-base font-bold text-white transition-colors duration-200 group-hover:text-secondary">
                     {post.title}
                   </h3>
-                  <p className="mt-1 text-xs text-white/50">{getReadTimeMinutes(post)} min read</p>
+                  <p className="mt-1 text-xs text-white/70">{getReadTimeMinutes(post)} min read</p>
                 </div>
               </Link>
               );

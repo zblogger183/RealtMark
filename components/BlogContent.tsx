@@ -40,7 +40,7 @@ export function BlogContent({ content }: { content: ContentBlock[] }) {
                 />
               </div>
               {block.caption && (
-                <figcaption className="mt-2 text-sm text-black/50">{block.caption}</figcaption>
+                <figcaption className="mt-2 text-sm text-black/60">{block.caption}</figcaption>
               )}
             </figure>
           );

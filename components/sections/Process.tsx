@@ -33,7 +33,7 @@ export default function Process() {
     <section className="bg-primary-mid">
       <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="light">The process</Eyebrow>
+          <Eyebrow tone="onMid">The process</Eyebrow>
           <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
             From strategy call to live campaign,
             <br />
@@ -77,7 +77,7 @@ export default function Process() {
                   </div>
 
                   <h3 className="relative z-10 mt-6 text-lg font-bold text-white">{step.title}</h3>
-                  <p className="relative z-10 mx-auto mt-3 max-w-xs text-sm leading-relaxed text-white/70">
+                  <p className="relative z-10 mx-auto mt-3 max-w-xs text-sm leading-relaxed text-white/85">
                     {step.copy}
                   </p>
                 </div>

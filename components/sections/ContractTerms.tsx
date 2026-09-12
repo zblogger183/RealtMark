@@ -23,11 +23,11 @@ export default function ContractTerms() {
           <div className="flex flex-shrink-0 items-center gap-8">
             <div className="text-center">
               <p className="text-2xl font-bold tabular-nums text-secondary">3 mo</p>
-              <p className="text-xs uppercase tracking-wide text-white/50">Minimum term</p>
+              <p className="text-xs uppercase tracking-wide text-white/70">Minimum term</p>
             </div>
             <div className="text-center">
               <p className="text-2xl font-bold tabular-nums text-secondary">1 day</p>
-              <p className="text-xs uppercase tracking-wide text-white/50">Reply time</p>
+              <p className="text-xs uppercase tracking-wide text-white/70">Reply time</p>
             </div>
             <CtaLink href="/pricing" variant="primary">
               See Pricing

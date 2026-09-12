@@ -17,7 +17,7 @@ const focusRing =
 function FooterColumn({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-widest text-white/50">{heading}</p>
+      <p className="text-xs font-semibold uppercase tracking-widest text-white/70">{heading}</p>
       <ul className="mt-4 space-y-2.5">{children}</ul>
     </div>
   );
@@ -63,7 +63,7 @@ export default function Footer() {
                   {PHONE_DISPLAY}
                 </a>
               ) : (
-                <p className="text-white/40">{PHONE_DISPLAY} (line coming soon)</p>
+                <p className="text-white/70">{PHONE_DISPLAY} (line coming soon)</p>
               )}
             </div>
             <div className="mt-6 flex items-center gap-4">
@@ -122,17 +122,17 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-white/70">
             Campaigns built in line with DLD/RERA and Madhmoun advertising regulations.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link href="/privacy-policy" className={`text-xs text-white/50 hover:text-white ${focusRing}`}>
+            <Link href="/privacy-policy" className={`text-xs text-white/70 hover:text-white ${focusRing}`}>
               Privacy Policy
             </Link>
-            <Link href="/terms-and-conditions" className={`text-xs text-white/50 hover:text-white ${focusRing}`}>
+            <Link href="/terms-and-conditions" className={`text-xs text-white/70 hover:text-white ${focusRing}`}>
               Terms &amp; Conditions
             </Link>
-            <p className="text-xs text-white/50">© {year} RealtMark. All rights reserved.</p>
+            <p className="text-xs text-white/70">© {year} RealtMark. All rights reserved.</p>
           </div>
         </div>
       </div>

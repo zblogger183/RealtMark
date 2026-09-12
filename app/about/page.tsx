@@ -51,7 +51,7 @@ export default function AboutPage() {
         <section className="bg-primary-mid">
           <div className="mx-auto max-w-content px-6 py-20 md:px-10 md:py-24">
             <div className="max-w-2xl">
-              <Eyebrow tone="light">How we work</Eyebrow>
+              <Eyebrow tone="onMid">How we work</Eyebrow>
               <h2 className="mt-3 text-3xl font-bold text-white">Built for how this region actually works</h2>
               <p className="mt-4 text-base leading-relaxed text-white/80">
                 Every Gulf market we work in has its own advertising rules, and they&apos;re not
